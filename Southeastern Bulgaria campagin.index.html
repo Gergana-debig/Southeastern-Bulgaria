@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Southeast Bulgaria Development Plan 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream: #f8f5ef; --ink: #1e1c18; --ink2: #4a4840; --muted: #8a8680; --rule: #ddd9d0;
+  --green: #2a6e45; --green-light: #eaf3ed;
+  --red: #b83222; --red-light: #fbecea;
+  --amber: #9a5c10; --amber-light: #fdf3e3;
+  --blue: #1e4a82; --blue-light: #e8eef8;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--cream); color: var(--ink); font-family: 'Source Sans 3', sans-serif; font-size: 15px; line-height: 1.6; overflow-x: hidden; }
+
+/* NAV */
+nav { position: sticky; top: 0; z-index: 100; background: var(--cream); border-bottom: 1px solid var(--rule); padding: 12px 40px; display: flex; align-items: center; justify-content: space-between; }
+.nlogo { font-family: 'Lora', serif; font-size: 15px; font-weight: 700; color: var(--ink); }
+.nlogo span { color: var(--green); }
+.ntabs { display: flex; gap: 2px; }
+.ntab { font-family: 'Source Sans 3', sans-serif; font-size: 13px; font-weight: 400; padding: 5px 14px; border: 1px solid transparent; border-radius: 3px; cursor: pointer; background: none; color: var(--muted); transition: all 0.18s; }
+.ntab:hover { color: var(--ink); background: var(--rule); }
+.ntab.active { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+.nflag { display: flex; flex-direction: column; width: 20px; height: 13px; border-radius: 2px; overflow: hidden; border: 1px solid var(--rule); }
+.nflag div { flex: 1; }
+
+/* PAGE SYSTEM */
+.page { display: none; min-height: calc(100vh - 47px); }
+.page.active { display: block; }
+.inner { max-width: 860px; margin: 0 auto; padding: 60px 40px; }
+
+/* SHARED */
+.sec-kicker { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 500; }
+.sec-h { font-family: 'Lora', serif; font-size: clamp(28px, 4vw, 44px); font-weight: 700; line-height: 1.15; margin-bottom: 8px; letter-spacing: -0.3px; }
+.sec-sub { font-size: 15px; color: var(--ink2); max-width: 580px; margin-bottom: 36px; font-weight: 300; line-height: 1.7; }
+.caption { font-size: 12px; color: var(--muted); font-style: italic; margin-top: 8px; line-height: 1.5; }
+.note-box { background: var(--green-light); border-left: 3px solid var(--green); padding: 14px 18px; font-size: 13px; color: var(--green); border-radius: 0 3px 3px 0; line-height: 1.6; }
+
+/* HOME */
+.home-kicker { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; font-weight: 500; }
+.home-h1 { font-family: 'Lora', serif; font-size: clamp(38px, 5vw, 62px); font-weight: 700; line-height: 1.1; color: var(--ink); margin-bottom: 24px; letter-spacing: -0.5px; }
+.home-h1 em { font-style: italic; color: var(--green); }
+.home-intro { font-size: 17px; color: var(--ink2); max-width: 620px; line-height: 1.75; margin-bottom: 36px; font-weight: 300; }
+.home-stats { display: flex; gap: 0; border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; max-width: 600px; margin-bottom: 10px; }
+.hstat { flex: 1; padding: 20px 22px; border-right: 1px solid var(--rule); }
+.hstat:last-child { border-right: none; }
+.hstat-n { font-family: 'Lora', serif; font-size: 30px; font-weight: 700; line-height: 1; margin-bottom: 4px; }
+.hstat-n.r { color: var(--red); } .hstat-n.g { color: var(--green); } .hstat-n.b { color: var(--blue); }
+.hstat-l { font-size: 12px; color: var(--ink2); line-height: 1.4; font-weight: 500; }
+.hstat-note { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.home-cta { display: flex; gap: 12px; align-items: center; margin: 28px 0; }
+.btn-primary { font-family: 'Source Sans 3', sans-serif; font-size: 13px; font-weight: 600; padding: 10px 22px; background: var(--green); color: #fff; border: none; border-radius: 3px; cursor: pointer; transition: background 0.18s; }
+.btn-primary:hover { background: #1f5234; }
+.btn-secondary { font-family: 'Source Sans 3', sans-serif; font-size: 13px; color: var(--muted); background: none; border: none; cursor: pointer; transition: color 0.18s; }
+.btn-secondary:hover { color: var(--ink); }
+
+/* AUDIENCE TAGS on home */
+.audience-strip { display: flex; gap: 8px; flex-wrap: wrap; margin: 28px 0 8px; }
+.aud-tag { font-size: 12px; font-weight: 500; padding: 5px 12px; border-radius: 3px; border: 1px solid; }
+.aud-tag.g { background: var(--green-light); color: var(--green); border-color: #b0d9c0; }
+.aud-tag.b { background: var(--blue-light); color: var(--blue); border-color: #aec4e8; }
+.aud-tag.a { background: var(--amber-light); color: var(--amber); border-color: #e0c090; }
+.aud-tag.r { background: var(--red-light); color: var(--red); border-color: #e8b0a8; }
+
+/* ISSUES */
+.igrid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; }
+.icard { background: var(--cream); padding: 28px 24px; transition: background 0.18s; }
+.icard:hover { background: #f2ede4; }
+.itag { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: 2px 8px; border-radius: 2px; margin-bottom: 14px; }
+.itag.r { background: var(--red-light); color: var(--red); }
+.itag.a { background: var(--amber-light); color: var(--amber); }
+.itag.b { background: var(--blue-light); color: var(--blue); }
+.itag.g { background: var(--green-light); color: var(--green); }
+.inum { font-family: 'Lora', serif; font-size: 48px; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.inum.r { color: var(--red); } .inum.a { color: var(--amber); } .inum.b { color: var(--blue); } .inum.g { color: var(--green); }
+.icard h3 { font-family: 'Lora', serif; font-size: 15px; font-weight: 600; margin-bottom: 6px; line-height: 1.4; }
+.icard p { font-size: 13px; color: var(--ink2); line-height: 1.65; margin-bottom: 8px; }
+.geo-label { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-top: 10px; margin-bottom: 3px; }
+
+/* AUDIENCE SECTIONS */
+.aud-section { margin-top: 40px; }
+.aud-section-title { font-family: 'Lora', serif; font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+.aud-section-sub { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+.aud-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.aud-card { border: 1px solid var(--rule); border-radius: 4px; padding: 18px 16px; background: var(--cream); }
+.aud-card-who { font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+.aud-card-who.g { color: var(--green); } .aud-card-who.b { color: var(--blue); } .aud-card-who.a { color: var(--amber); } .aud-card-who.r { color: var(--red); }
+.aud-card h4 { font-family: 'Lora', serif; font-size: 14px; font-weight: 600; margin-bottom: 6px; line-height: 1.35; }
+.aud-card p { font-size: 12px; color: var(--ink2); line-height: 1.6; }
+
+/* PLAN */
+.pillars { display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; margin-top: 28px; }
+.pillar { background: var(--cream); display: grid; grid-template-columns: 48px 1fr 32px; gap: 16px; align-items: start; padding: 24px 22px; cursor: pointer; transition: background 0.18s; }
+.pillar:hover { background: #f2ede4; }
+.pillar.open { background: #f0ede6; }
+.pnum { font-family: 'Lora', serif; font-size: 32px; font-weight: 700; color: var(--rule); line-height: 1; padding-top: 2px; }
+.pillar.p1 .pnum { color: #b8d9c8; } .pillar.p2 .pnum { color: #b8cbdf; } .pillar.p3 .pnum { color: #ddd0bc; }
+.ptag { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; display: block; margin-bottom: 4px; }
+.ptag.g { color: var(--green); } .ptag.b { color: var(--blue); } .ptag.a { color: var(--amber); }
+.pillar h3 { font-family: 'Lora', serif; font-size: 16px; font-weight: 600; color: var(--ink); line-height: 1.3; }
+.pillar-detail { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, opacity 0.3s; opacity: 0; }
+.pillar.open .pillar-detail { max-height: 400px; opacity: 1; }
+.pillar-detail p { font-size: 13px; color: var(--ink2); line-height: 1.7; padding-top: 10px; }
+.chips { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+.chip { font-size: 11px; padding: 3px 10px; border-radius: 2px; font-weight: 500; }
+.chip.g { background: var(--green-light); color: var(--green); } .chip.b { background: var(--blue-light); color: var(--blue); } .chip.a { background: var(--amber-light); color: var(--amber); }
+.parrow { font-size: 16px; color: var(--muted); transition: transform 0.3s; text-align: center; padding-top: 4px; }
+.pillar.open .parrow { transform: rotate(90deg); color: var(--ink); }
+.pillar-audiences { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--rule); }
+.pillar-audiences strong { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+.pillar-audiences p { color: var(--muted); font-size: 12px; padding-top: 4px; }
+
+/* BLOG */
+.blog-wrap { display: grid; grid-template-columns: 1fr 1.15fr; gap: 64px; align-items: start; margin-top: 36px; }
+.blog-date { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 500; }
+.blog-h { font-family: 'Lora', serif; font-size: clamp(26px, 3.5vw, 40px); font-weight: 700; line-height: 1.15; letter-spacing: -0.3px; color: var(--ink); margin-bottom: 14px; }
+.blog-h .g { color: var(--green); }
+.blog-byline { font-size: 12px; color: var(--muted); padding-top: 14px; border-top: 1px solid var(--rule); line-height: 1.5; }
+.blog-body p { font-size: 14px; color: var(--ink2); line-height: 1.85; margin-bottom: 16px; }
+.blog-body p:last-child { margin-bottom: 0; }
+.blog-body strong { color: var(--ink); font-weight: 600; }
+.bquote { border-left: 3px solid var(--green); padding: 12px 16px; background: var(--green-light); border-radius: 0 3px 3px 0; margin: 16px 0; }
+.bquote p { font-style: italic; font-size: 14px; color: var(--green) !important; margin-bottom: 0 !important; line-height: 1.6; }
+.geo-callout { border: 1px solid var(--rule); border-radius: 4px; padding: 16px 18px; margin-top: 16px; background: #f2ede4; }
+.geo-callout strong { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 6px; }
+.geo-callout p { font-size: 13px; color: var(--ink2); line-height: 1.65; margin: 0; }
+
+/* OUTCOMES */
+.ogrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; margin-bottom: 8px; }
+.ocard { background: var(--cream); padding: 22px 20px; transition: background 0.18s; }
+.ocard:hover { background: #f2ede4; }
+.oicon { font-size: 24px; display: block; margin-bottom: 10px; }
+.ocard h4 { font-family: 'Lora', serif; font-weight: 600; font-size: 14px; margin-bottom: 6px; line-height: 1.35; }
+.ocard p { font-size: 12px; color: var(--ink2); line-height: 1.6; margin-bottom: 6px; }
+.ocard .who { font-size: 11px; color: var(--muted); font-style: italic; }
+.pbars-wrap { border-top: 1px solid var(--rule); padding-top: 36px; margin-top: 36px; }
+.pbtitle { font-family: 'Lora', serif; font-size: 18px; font-weight: 600; margin-bottom: 6px; color: var(--ink); }
+.pbtitle-sub { font-size: 13px; color: var(--muted); margin-bottom: 22px; }
+.pbar-row { margin-bottom: 18px; }
+.pbar-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+.pbar-name { font-weight: 600; font-size: 13px; }
+.pbar-val { font-family: 'Lora', serif; font-size: 16px; font-weight: 700; }
+.pbar-val.r { color: var(--red); } .pbar-val.b { color: var(--blue); } .pbar-val.a { color: var(--amber); }
+.pbar-track { height: 5px; background: var(--rule); border-radius: 99px; overflow: hidden; }
+.pbar-fill { height: 100%; transition: width 1.4s cubic-bezier(0.4, 0, 0.2, 1); border-radius: 99px; }
+.cta-strip { background: var(--ink); margin: 48px -40px -60px; padding: 48px 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+.cta-h { font-family: 'Lora', serif; font-size: clamp(22px, 3vw, 36px); font-weight: 700; line-height: 1.2; color: #fff; letter-spacing: -0.3px; }
+.cta-h em { font-style: italic; color: #8ed9b0; }
+.budget-pill { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 4px; padding: 14px 20px; text-align: right; }
+.budget-n { font-family: 'Lora', serif; font-size: 26px; font-weight: 700; color: #8ed9b0; line-height: 1; }
+.budget-l { font-size: 11px; color: rgba(255,255,255,0.35); letter-spacing: 0.5px; margin-top: 4px; }
+.btn-white { font-family: 'Source Sans 3', sans-serif; font-size: 13px; font-weight: 600; padding: 10px 20px; background: #fff; color: var(--ink); border: none; border-radius: 3px; cursor: pointer; transition: background 0.18s; margin-top: 12px; }
+.btn-white:hover { background: #eee; }
+
+/* FOOTER */
+footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); padding: 18px 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; }
+.flogo { font-family: 'Lora', serif; font-size: 13px; font-weight: 600; color: #fff; }
+.flogo span { color: #8ed9b0; }
+.fright { font-size: 11px; color: rgba(255,255,255,0.3); }
+
+/* DIVIDER */
+.hdiv { border: none; border-top: 1px solid var(--rule); }
+
+@media(max-width: 680px) {
+  nav { padding: 10px 20px; }
+  .inner { padding: 40px 20px; }
+  .igrid, .ogrid, .aud-grid { grid-template-columns: 1fr; }
+  .blog-wrap { grid-template-columns: 1fr; gap: 32px; }
+  .cta-strip { flex-direction: column; margin: 40px -20px -40px; padding: 36px 20px; }
+  .budget-pill { text-align: left; }
+  .home-stats { flex-direction: column; }
+  .hstat { border-right: none; border-bottom: 1px solid var(--rule); }
+  .hstat:last-child { border-bottom: none; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nlogo">Southeast <span>Bulgaria</span> 2026</div>
+  <div class="ntabs">
+    <button class="ntab active" data-tab="home">Home</button>
+    <button class="ntab" data-tab="issues">Issues</button>
+    <button class="ntab" data-tab="plan">Plan</button>
+    <button class="ntab" data-tab="blog">Blog</button>
+    <button class="ntab" data-tab="outcomes">Outcomes</button>
+  </div>
+  <div class="nflag">
+    <div style="background:#fff"></div>
+    <div style="background:#00966E"></div>
+    <div style="background:#D62612"></div>
+  </div>
+</nav>
+
+<!-- HOME -->
+<div class="page active" id="s-home">
+  <div class="inner" style="padding-bottom:0">
+    <div class="home-kicker">Regional Development Campaign — Bulgaria 2026</div>
+    <h1 class="home-h1">Building the <em>Southeast</em>:<br>A plan for people left behind</h1>
+    <p class="home-intro">The Southeastern Region of Bulgaria has lost 125,000 residents in just ten years. This campaign sets out a concrete development plan — addressing the energy transition, infrastructure gaps, and youth emigration across four provinces: Burgas, Stara Zagora, Sliven, and Yambol.</p>
+
+    <div class="home-stats">
+      <div class="hstat">
+        <div class="hstat-n r">–12%</div>
+        <div class="hstat-l">Population loss</div>
+        <div class="hstat-note">2011–2021 Census (NSI)</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-n g">€700M–€1B</div>
+        <div class="hstat-l">Proposed investment</div>
+        <div class="hstat-note">EU funds + state + private</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-n b">4</div>
+        <div class="hstat-l">Provinces targeted</div>
+        <div class="hstat-note">Burgas, St. Zagora, Sliven, Yambol</div>
+      </div>
+    </div>
+    <p class="caption" style="max-width:600px;margin-bottom:28px">
+      <strong>Figure 1.</strong> Key indicators for the Southeastern Level 2 Region. Population data from the NSI Census 2021; investment figure reflects the proposed budget range across all three plan pillars. A replacement rate below 100% means fewer people are being born than are dying or emigrating.
+    </p>
+
+    <p style="font-size:14px;color:var(--ink2);max-width:600px;margin-bottom:18px;line-height:1.7">This campaign is designed to speak to four main groups — each affected differently by the region's challenges:</p>
+    <div class="audience-strip">
+      <span class="aud-tag g">⚡ Coal workers</span>
+      <span class="aud-tag b">🚆 Rural communities</span>
+      <span class="aud-tag a">🎓 Young people</span>
+      <span class="aud-tag r">🏙️ Families & employers</span>
+    </div>
+    <p class="caption" style="max-width:600px;margin-bottom:28px">Each section of this campaign addresses the concerns and interests of these audiences specifically.</p>
+
+    <div class="home-cta">
+      <button class="btn-primary" onclick="goTo('issues')">See the issues</button>
+      <button class="btn-secondary" onclick="goTo('plan')">Read the plan →</button>
+    </div>
+
+    <div class="note-box" style="max-width:620px;margin-bottom:48px">
+      All statistics are sourced from the NSI Census 2021 and Eurostat regional data. This is a student campaign project produced for the Regional Development Council, Southeastern Level 2 Region.
+    </div>
+  </div>
+  <hr class="hdiv">
+</div>
+
+<!-- ISSUES -->
+<div class="page" id="s-issues">
+  <div class="inner">
+    <div class="sec-kicker">01 — Main Issues</div>
+    <h2 class="sec-h">What's going wrong</h2>
+    <p class="sec-sub">Four interconnected problems — rooted in geography, economics, and infrastructure — that have been driving people out of Burgas, Sliven, Stara Zagora, and Yambol for decades.</p>
+
+    <div class="igrid">
+      <div class="icard">
+        <span class="itag r">Population</span>
+        <div class="inum r">–12%</div>
+        <h3>125,000 people left in 10 years</h3>
+        <p>Young people relocate to Sofia or Western Europe for better opportunities. Yambol's replacement rate has dropped to just 60.1% — meaning the population is shrinking faster than it can replace itself.</p>
+        <div class="geo-label">Geographic factor</div>
+        <p class="caption">The region's peripheral location — far from Sofia and near the Turkish and Greek borders — limits economic connections. Rural settlements lack the density to attract services, creating a self-reinforcing cycle of decline.</p>
+      </div>
+      <div class="icard">
+        <span class="itag a">Energy</span>
+        <div class="inum a">Coal</div>
+        <h3>Maritsa East is running out of time</h3>
+        <p>The Maritsa East basin is Bulgaria's largest energy source and one of the EU's biggest lignite coal operations. Thousands of local jobs depend on it — but EU climate policy will end coal power by the 2030s.</p>
+        <div class="geo-label">Geographic factor</div>
+        <p class="caption">The basin sits on the Thracian Plain in Stara Zagora province — a flat, open landscape ideal for solar farms. The region receives some of the highest annual sunshine hours in Bulgaria, making it a natural candidate for renewable energy.</p>
+      </div>
+      <div class="icard">
+        <span class="itag b">Employment</span>
+        <div class="inum b">46pt</div>
+        <h3>Education shapes who can find work here</h3>
+        <p>Among people with a university degree, 83% are employed in the region. Among those with only primary education, the rate drops to 37%. A 46-percentage-point gap that reflects who the local economy is and isn't working for.</p>
+        <div class="geo-label">Geographic factor</div>
+        <p class="caption">Universities are concentrated in Burgas and Stara Zagora. Smaller towns and villages have little access to vocational training or higher education, locking rural residents into low-wage or no-wage situations.</p>
+      </div>
+      <div class="icard">
+        <span class="itag g">Rural Access</span>
+        <div class="inum g">Rural</div>
+        <h3>Villages cut off from the modern economy</h3>
+        <p>Dozens of rural settlements in Yambol and Sliven have no reliable broadband, poor road connections, and no local employers. Without digital or physical infrastructure, remote work and new businesses are impossible to start.</p>
+        <div class="geo-label">Geographic factor</div>
+        <p class="caption">The Balkan mountain range creates a natural barrier between the northern plains and the southern coast, making road and rail investment more complex — but also more impactful when done well.</p>
+      </div>
+    </div>
+    <p class="caption" style="margin-top:14px"><strong>Figure 2.</strong> The four main issues facing the Southeastern Region, with geographic context. Data: NSI Census 2021; Eurostat employment statistics 2022.</p>
+
+    <!-- Audience tailoring section -->
+    <div class="aud-section">
+      <h3 class="aud-section-title">How these issues affect different groups</h3>
+      <p class="aud-section-sub">The same regional problems hit workers, young people, and rural families in different ways. Here is how each audience experiences these challenges:</p>
+      <div class="aud-grid">
+        <div class="aud-card">
+          <div class="aud-card-who g">⚡ Coal workers</div>
+          <h4>Job security is disappearing</h4>
+          <p>Workers at Maritsa East face an uncertain future. Without a planned transition, thousands risk unemployment when coal operations wind down — with no retraining and no alternative employer nearby.</p>
+        </div>
+        <div class="aud-card">
+          <div class="aud-card-who a">🎓 Young people</div>
+          <h4>There is no reason to stay</h4>
+          <p>Graduates and school leavers see few jobs, no affordable housing, and poor transport. Leaving for Sofia or abroad is not a preference — it often feels like the only option.</p>
+        </div>
+        <div class="aud-card">
+          <div class="aud-card-who b">🚆 Rural communities</div>
+          <h4>Cut off from services and work</h4>
+          <p>Villages with no bus, no broadband, and no nearby hospital are functionally isolated. The regional decline starts here — and recovery has to start here too.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PLAN -->
+<div class="page" id="s-plan">
+  <div class="inner">
+    <div class="sec-kicker">02 — The Plan</div>
+    <h2 class="sec-h">Three pillars,<br>one region</h2>
+    <p class="sec-sub">The development plan is built around three investment areas. Each pillar targets a specific geographic and economic problem — and a specific group of people. Click each one to read more.</p>
+
+    <div class="pillars">
+      <div class="pillar p1" onclick="togglePillar(this)">
+        <div class="pnum">01</div>
+        <div class="pbody">
+          <span class="ptag g">Green Energy</span>
+          <h3>Transform Maritsa East</h3>
+          <div class="pillar-detail">
+            <p>The Thracian Plain — where Maritsa East sits — receives over 2,400 hours of sunlight per year, making it one of the best locations in Europe for solar generation. The plan invests in solar parks and wind facilities to replace coal-based electricity production. Every affected coal worker is offered a funded retraining programme in renewable engineering or related technical fields.</p>
+            <div class="chips">
+              <span class="chip g">Solar parks</span>
+              <span class="chip g">Wind energy</span>
+              <span class="chip g">Worker retraining</span>
+            </div>
+            <div class="pillar-audiences">
+              <strong>Audience: Coal workers and Stara Zagora communities</strong>
+              <p>This pillar directly addresses the fear of job loss. Retraining is not optional or vague — it is a funded, structured programme workers can plan around.</p>
+            </div>
+          </div>
+        </div>
+        <div class="parrow">›</div>
+      </div>
+      <div class="pillar p2" onclick="togglePillar(this)">
+        <div class="pnum">02</div>
+        <div class="pbody">
+          <span class="ptag b">Infrastructure</span>
+          <h3>Connect every community</h3>
+          <div class="pillar-detail">
+            <p>The Southeastern Region has four provinces but no fast rail link between them. The plan upgrades railway lines across Burgas, Sliven, Stara Zagora, and Yambol, expands the Port of Burgas to increase trade capacity, and delivers broadband and road improvements to rural municipalities currently cut off from the regional economy.</p>
+            <div class="chips">
+              <span class="chip b">Railway upgrades</span>
+              <span class="chip b">Port of Burgas</span>
+              <span class="chip b">Rural broadband</span>
+            </div>
+            <div class="pillar-audiences">
+              <strong>Audience: Rural communities and employers</strong>
+              <p>Better infrastructure means rural residents can reach jobs and services, and employers can consider locations outside city centres — spreading economic activity more fairly across the region.</p>
+            </div>
+          </div>
+        </div>
+        <div class="parrow">›</div>
+      </div>
+      <div class="pillar p3" onclick="togglePillar(this)">
+        <div class="pnum">03</div>
+        <div class="pbody">
+          <span class="ptag a">Education and Retention</span>
+          <h3>Give young people a reason to stay</h3>
+          <div class="pillar-detail">
+            <p>University-business partnerships create direct pathways from study to local employment. Affordable housing support targets graduates who might otherwise leave for Sofia. Startup hubs in Burgas and Stara Zagora provide workspace, mentoring, and small grants for new businesses — building a local economy that young people want to be part of.</p>
+            <div class="chips">
+              <span class="chip a">Startup hubs</span>
+              <span class="chip a">Affordable housing</span>
+              <span class="chip a">Vocational training</span>
+            </div>
+            <div class="pillar-audiences">
+              <strong>Audience: Young people aged 18–30</strong>
+              <p>This pillar speaks directly to the decision to stay or go. Housing and jobs are the two main reasons young people leave — this pillar addresses both.</p>
+            </div>
+          </div>
+        </div>
+        <div class="parrow">›</div>
+      </div>
+    </div>
+    <p class="caption" style="margin-top:14px"><strong>Figure 3.</strong> The three investment pillars of the Southeast Bulgaria Development Plan. Each pillar is designed to address a specific geographic and economic challenge. Click any row to expand.</p>
+  </div>
+</div>
+
+<!-- BLOG -->
+<div class="page" id="s-blog">
+  <div class="inner">
+    <div class="sec-kicker">03 — Opinion</div>
+
+    <div class="blog-wrap">
+      <div>
+        <div class="blog-date">May 2026</div>
+        <h2 class="blog-h">Our region is <span class="g">shrinking.</span><br>It doesn't have to.</h2>
+        <div class="blog-byline">District Governor<br>Regional Development Council<br>Southeastern Level 2 Region</div>
+      </div>
+      <div class="blog-body">
+        <p>Between 2011 and 2021, the Southeastern Region lost <strong>125,000 people</strong> — roughly the population of Stara Zagora city. Young people are leaving for Sofia, for Germany, for anywhere with a visible future. That is not a natural trend. It is the predictable outcome of decades of underinvestment in a region that was treated as peripheral.</p>
+
+        <div class="bquote"><p>"The Maritsa East coal jobs will change whether we plan for it or not. We are choosing to plan — and to plan with the workers, not around them."</p></div>
+
+        <p>Geography shapes this story. The Thracian Plain gives us exceptional solar potential. The Balkan mountain range made infrastructure hard to build — but that is not a reason to stop trying. The Port of Burgas sits on the Black Sea coast, connecting us to trade routes most of Bulgaria cannot access. These are advantages we have not fully used.</p>
+
+        <div class="geo-callout">
+          <strong>Geographic context</strong>
+          <p>The Southeast is a Level 2 statistical region under EU classification — meaning it qualifies for cohesion funding, but is currently too poor to maximise those opportunities. Raising economic output to Level 1 status would unlock significantly higher EU development grants for the region and for Bulgaria as a whole.</p>
+        </div>
+
+        <p>The plan asks for <strong>€700M to €1B over several years</strong> — drawn from EU structural funds, the Bulgarian state budget, and private sector partnerships. That is not an abstract figure. It is solar panels on the Thracian Plain. It is a train that actually connects Yambol to Burgas. It is a startup grant for a graduate who wanted to stay but needed one reason to.</p>
+
+        <p>Three pillars. Four provinces. One region that deserves to stop being left behind.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OUTCOMES -->
+<div class="page" id="s-outcomes">
+  <div class="inner">
+    <div class="sec-kicker">04 — What changes</div>
+    <h2 class="sec-h">What this delivers</h2>
+    <p class="sec-sub">The concrete outcomes the plan is designed to achieve — and who each outcome benefits most.</p>
+
+    <div class="ogrid">
+      <div class="ocard">
+        <span class="oicon">⚡</span>
+        <h4>New jobs for coal workers</h4>
+        <p>Retraining ensures no worker is left without a path forward in the energy transition.</p>
+        <p class="who">Who benefits: Maritsa East workers, Stara Zagora province</p>
+      </div>
+      <div class="ocard">
+        <span class="oicon">🚆</span>
+        <h4>Faster trains, better roads</h4>
+        <p>All four provinces connected. Commuting and trade between cities becomes practical.</p>
+        <p class="who">Who benefits: Rural communities, employers, all residents</p>
+      </div>
+      <div class="ocard">
+        <span class="oicon">🎓</span>
+        <h4>Youth stay and build here</h4>
+        <p>Housing support and startup grants give the next generation a local future.</p>
+        <p class="who">Who benefits: Graduates, young families, ages 18–35</p>
+      </div>
+      <div class="ocard">
+        <span class="oicon">📶</span>
+        <h4>Broadband for rural areas</h4>
+        <p>Remote work and online education become available in every municipality.</p>
+        <p class="who">Who benefits: Rural villages in Yambol and Sliven</p>
+      </div>
+      <div class="ocard">
+        <span class="oicon">⚓</span>
+        <h4>Port of Burgas drives trade</h4>
+        <p>Expanded logistics capacity attracts foreign investment across the region.</p>
+        <p class="who">Who benefits: Businesses, port workers, Burgas province</p>
+      </div>
+      <div class="ocard">
+        <span class="oicon">🇧🇬</span>
+        <h4>More EU funding for Bulgaria</h4>
+        <p>Moving from Level 2 to Level 1 region status unlocks higher EU cohesion grants.</p>
+        <p class="who">Who benefits: All four provinces; Bulgaria nationally</p>
+      </div>
+    </div>
+    <p class="caption" style="margin-bottom:0"><strong>Figure 4.</strong> Summary of projected outcomes by investment pillar. Each outcome card notes the specific audience or geographic area that benefits most.</p>
+
+    <div class="pbars-wrap">
+      <div class="pbtitle">Demographic replacement rate by province (2021)</div>
+      <div class="pbtitle-sub">A replacement rate below 100% means the population is declining. The lower the figure, the faster the decline. All four provinces are below the threshold. Source: NSI Census 2021.</div>
+      <div style="max-width:520px">
+        <div class="pbar-row">
+          <div class="pbar-top"><span class="pbar-name">Sliven</span><span class="pbar-val r">79.4%</span></div>
+          <div class="pbar-track"><div class="pbar-fill" id="p1" style="width:0%;background:var(--red)"></div></div>
+        </div>
+        <div class="pbar-row">
+          <div class="pbar-top"><span class="pbar-name">Burgas</span><span class="pbar-val b">66.6%</span></div>
+          <div class="pbar-track"><div class="pbar-fill" id="p2" style="width:0%;background:var(--blue)"></div></div>
+        </div>
+        <div class="pbar-row">
+          <div class="pbar-top"><span class="pbar-name">Stara Zagora</span><span class="pbar-val a">62.5%</span></div>
+          <div class="pbar-track"><div class="pbar-fill" id="p3" style="width:0%;background:var(--amber)"></div></div>
+        </div>
+        <div class="pbar-row">
+          <div class="pbar-top"><span class="pbar-name">Yambol</span><span class="pbar-val r">60.1%</span></div>
+          <div class="pbar-track"><div class="pbar-fill" id="p4" style="width:0%;background:var(--red)"></div></div>
+        </div>
+      </div>
+      <p class="caption" style="max-width:520px"><strong>Figure 5.</strong> Replacement rate by province. Yambol is the most at-risk, at 60.1% — meaning the province is losing population nearly twice as fast as it is replacing it. All four provinces require intervention.</p>
+    </div>
+
+    <div class="cta-strip">
+      <div class="cta-h">The Southeast<br><em>deserves better.</em></div>
+      <div>
+        <div class="budget-pill">
+          <div class="budget-n">€700M–€1B</div>
+          <div class="budget-l">EU + Bulgarian State + Private Sector</div>
+        </div>
+        <button class="btn-white" onclick="goTo('home')">Back to top</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="flogo">Southeast <span>Bulgaria</span> Development Plan 2026</div>
+  <div class="fright">Regional Development Council — Data: NSI Census 2021 &amp; Eurostat</div>
+</footer>
+
+<script>
+function goTo(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.ntab').forEach(t => t.classList.remove('active'));
+  document.getElementById('s-' + id).classList.add('active');
+  document.querySelector(`[data-tab="${id}"]`).classList.add('active');
+  window.scrollTo(0, 0);
+  if (id === 'outcomes') triggerBars();
+}
+document.querySelectorAll('.ntab').forEach(btn => {
+  btn.addEventListener('click', () => goTo(btn.dataset.tab));
+});
+function togglePillar(el) {
+  const wasOpen = el.classList.contains('open');
+  document.querySelectorAll('.pillar').forEach(p => p.classList.remove('open'));
+  if (!wasOpen) el.classList.add('open');
+}
+let barsTriggered = false;
+function triggerBars() {
+  if (barsTriggered) return;
+  barsTriggered = true;
+  setTimeout(() => {
+    document.getElementById('p1').style.width = '79.4%';
+    document.getElementById('p2').style.width = '66.6%';
+    document.getElementById('p3').style.width = '62.5%';
+    document.getElementById('p4').style.width = '60.1%';
+  }, 300);
+}
+</script>
+</body>
+</html>
